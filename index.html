@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day!</title>
+    <style>
+        body {
+            background-color: #ffb6c1; /* Light pink */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #ff1493; /* Deep pink */
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #splash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ffb6c1, #ff69b4, #ff1493);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            animation: splashPulse 3s ease-in-out;
+        }
+        #splash h1 {
+            font-size: 4em;
+            color: #fff;
+            animation: heartBeat 1.5s infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        #splash .quote {
+            font-size: 1.5em;
+            color: #fff;
+            margin: 20px 0;
+            font-style: italic;
+            animation: fadeInQuote 2s ease-in-out 1s both;
+        }
+        #splash .countdown {
+            font-size: 2em;
+            color: #fff;
+            margin-top: 20px;
+        }
+        #splash .hearts-splash {
+            font-size: 3em;
+            animation: rotateHearts 2s linear infinite;
+        }
+        #main {
+            display: none;
+            padding: 50px;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeInBounce 2s ease-in-out;
+        }
+        p {
+            font-size: 1.5em;
+            animation: fadeIn 3s ease-in-out 1s both;
+        }
+        .hearts {
+            font-size: 2em;
+            color: #ff69b4;
+            animation: pulseBounce 1.5s infinite;
+        }
+        .sparkle {
+            position: absolute;
+            font-size: 1.5em;
+            color: #ffd700;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .couple {
+            font-size: 4em;
+            color: #ff1493;
+            animation: coupleDance 3s ease-in-out infinite;
+            margin: 20px 0;
+        }
+        .love-scroll {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            margin: 20px 0;
+        }
+        .love-scroll div {
+            animation: scrollUp 20s linear infinite;
+            font-size: 1.2em;
+            color: #ff69b4;
+        }
+        .heart-burst {
+            position: absolute;
+            font-size: 3em;
+            color: #ff1493;
+            animation: burst 2s ease-out forwards;
+            pointer-events: none;
+        }
+        .floating-kiss {
+            position: absolute;
+            font-size: 2em;
+            color: #ff1493;
+            animation: kissFloat 4s linear infinite;
+            pointer-events: none;
+        }
+        .rose {
+            position: absolute;
+            font-size: 3em;
+            color: #ff1493;
+            animation: roseFall 6s linear infinite;
+            pointer-events: none;
+        }
+        .confetti {
+            position: absolute;
+            font-size: 1.5em;
+            color: #ff69b4;
+            animation: confettiFall 4s linear infinite;
+            pointer-events: none;
+        }
+        .butterfly {
+            position: absolute;
+            font-size: 2em;
+            color: #ff69b4;
+            animation: butterflyFlutter 5s linear infinite;
+            pointer-events: none;
+        }
+        .arrow {
+            position: absolute;
+            font-size: 2.5em;
+            color: #ff1493;
+            animation: arrowShoot 3s linear infinite;
+            pointer-events: none;
+        }
+        .letter {
+            position: absolute;
+            font-size: 2em;
+            color: #ff69b4;
+            animation: letterFloat 4s linear infinite;
+            pointer-events: none;
+        }
+        /* Floating hearts animation */
+        .floating-heart {
+            position: absolute;
+            font-size: 2em;
+            color: #ff69b4;
+            animation: float 5s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes splashPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes fadeInQuote {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes rotateHearts {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes fadeInBounce {
+            0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+            50% { opacity: 0.5; transform: translateY(-10px) scale(1.05); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseBounce {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1) translateY(-5px); }
+            50% { transform: scale(1.2) translateY(-10px); }
+            75% { transform: scale(1.1) translateY(-5px); }
+        }
+        @keyframes float {
+            from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        @keyframes coupleDance {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(5deg) scale(1.05); }
+            50% { transform: rotate(-5deg) scale(1.1); }
+            75% { transform: rotate(5deg) scale(1.05); }
+        }
+        @keyframes scrollUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(-100%); }
+        }
+        @keyframes burst {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 0.8; }
+            100% { transform: scale(2) rotate(360deg); opacity: 0; }
+        }
+        @keyframes kissFloat {
+            from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes roseFall {
+            from { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes confettiFall {
+            from { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+        @keyframes butterflyFlutter {
+            0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+            25% { transform: translateX(10px) translateY(-10px) rotate(5deg); }
+            50% { transform: translateX(-10px) translateY(-20px) rotate(-5deg); }
+            75% { transform: translateX(10px) translateY(-10px) rotate(5deg); }
+        }
+        @keyframes arrowShoot {
+            from { transform: translateX(-100vw) rotate(-45deg); opacity: 1; }
+            to { transform: translateX(100vw) rotate(-45deg); opacity: 0; }
+        }
+        @keyframes letterFloat {
+            from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Opening Splash Screen -->
+    <div id="splash">
+        <div class="hearts-splash">💖💕💗</div>
+        <h1>Happy Valentine's Day, JYOTII!</h1>
+        <div class="quote">"Love is not just looking at each other, it's looking in the same direction." – Antoine de Saint-Exupéry</div>
+        <div class="countdown" id="countdown">3</div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main">
+        <div class="hearts">❤️ ❤️ ❤️</div>
+        <h1>Happy Valentine's Day, JYOTII!</h1>
+        <p>I love you my princess, my sweetheart, my forever love, my soulmate, my everything.</p>
+        <div class="couple">👫💕</div>
+        <div class="hearts">❤️ ❤️ ❤️</div>
+
+        <!-- Scrolling "I love you" with varied words and emojis -->
+        <div class="love-scroll">
+            <div>
+                I love you, princess ❤️. I love you, baby 💕. I love you, cuttu 💖. I love you, soulmate 💗. I love you, shoonnaa 💓.<br>
+                I love you, darling 💘. I love you, angel 💝. I love you, lovebird 💞. I love you, sweetheart 💟. I love you, my heart 💌.<br>
+                I love you, princess ❤️. I love you, baby 💕. I love you, cuttu 💖. I love you, soulmate 💗. I love you, shoonnaa 💓.<br>
+                I love you, darling 💘. I love you, angel 💝. I love you, lovebird 💞. I love you, sweetheart 💟. I love you, my heart 💌.<br>
+                I love you, princess ❤️. I love you, baby 💕. I love you, cuttu 💖. I love you, soulmate 💗. I love you, shoonnaa 💓.<br>
+                I love you, darling 💘. I love you, angel 💝. I love you, lovebird 💞. I love you, sweetheart 💟. I love you, my heart 💌.<br>
+                I love you, princess ❤️. I love you, baby 💕. I love you, cuttu 💖. I love you, soulmate 💗. I love you, shoonnaa 💓.<br>
+                I love you, darling 💘. I love you, angel 💝. I love you, lovebird 💞. I love you, sweetheart 💟. I love you, my heart 💌.<br>
+                I love you, princess ❤️. I love you, baby 💕. I love you, cuttu 💖. I love you, soulmate 💗. I love you, shoonnaa 💓.<br>
+                I love you, darling 💘. I love you, angel 💝. I love you, lovebird 💞. I love you, sweetheart 💟. I love you, my heart 💌.<br>
+                <!-- Repeat for ~10000 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for animations, splash transition, and countdown -->
+    <script>
+        // Countdown in splash
+        let count = 3;
+        const countdownEl = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            count--;
+            countdownEl.textContent = count;
+            if (count === 0) {
+                clearInterval(interval);
+                countdownEl.textContent = 'Love is here!';
+            }
+        }, 1000);
+
+        // Splash screen transition
+        setTimeout(() => {
+            document.getElementById('splash').style.display = 'none';
+            document.getElementById('main').style.display = 'block';
+        }, 4000); // 4 seconds for countdown
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.textContent = '✨';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 4000);
+        }
+
+        function createHeartBurst() {
+            const burst = document.createElement('div');
+            burst.className = 'heart-burst';
+            burst.textContent = '💥❤️';
+            burst.style.left = Math.random() * 80 + 10 + 'vw';
+            burst.style.top = Math.random() * 80 + 10 + 'vh';
+            document.body.appendChild(burst);
+            setTimeout(() => burst.remove(), 2000);
+        }
+
+        function createFloatingKiss() {
+            const kiss = document.createElement('div');
+            kiss.className = 'floating-kiss';
+            kiss.textContent = '💋';
+            kiss.style.left = Math.random() * 100 + 'vw';
+            kiss.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(kiss);
+            setTimeout(() => kiss.remove(), 4000);
+        }
+
+        function createRose() {
+            const rose = document.createElement('div');
+            rose.className = 'rose';
+            rose.textContent = '🌹';
+            rose.style.left = Math.random() * 100 + 'vw';
+            rose.style.animationDuration = (Math.random() * 2 + 4) + 's';
+            document.body.appendChild(rose);
+            setTimeout(() => rose.remove(), 6000);
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.textContent = '🎉';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 4000);
+        }
+
+        function createButterfly() {
+            const butterfly = document.createElement('div');
+            butterfly.className = 'butterfly';
+            butterfly.textContent = '🦋';
+            butterfly.style.left = Math.random() * 80 + 10 + 'vw';
+            butterfly.style.top = Math.random() * 80 + 10 + 'vh';
+            butterfly.style.animationDuration = (Math.random() * 2 + 4) + 's';
+            document.body.appendChild(butterfly);
+            setTimeout(() => butterfly.remove(), 5000);
+        }
+
+        function createArrow() {
+            const arrow = document.createElement('div');
+            arrow.className = 'arrow';
+            arrow.textContent = '🏹💘';
+            arrow.style.top = Math.random() * 50 + 25 + 'vh';
+            document.body.appendChild(arrow);
+            setTimeout(() => arrow.remove(), 3000);
+        }
+
+        function createLetter() {
+            const letter = document.createElement('div');
+            letter.className = 'letter';
+            letter.textContent = '💌';
+            letter.style.left = Math.random() * 100 + 'vw';
+            letter.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(letter);
+            setTimeout(() => letter.remove(), 4000);
+        }
+
+        // Start animations after splash
+        setTimeout(() => {
+            setInterval(createFloatingHeart, Math.random() * 1000 + 1000);
+            setInterval(createSparkle, Math.random() * 1000 + 2000);
+            setInterval(createHeartBurst, Math.random() * 2000 + 3000);
+            setInterval(createFloatingKiss, Math.random() * 2000 + 2000);
+            setInterval(createRose, Math.random() * 3000 + 4000);
+            setInterval(createConfetti, Math.random() * 2000 + 3000);
+            setInterval(createButterfly, Math.random() * 3000 + 5000);
+            setInterval(createArrow, Math.random() * 4000 + 6000);
+            setInterval(createLetter, Math.random() * 2000 + 3000);
+        }, 4000);
+    </script>
+</body>
+</html>
